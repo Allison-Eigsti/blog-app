@@ -19,13 +19,13 @@ app.use(express.json())
 app.use(logger)
 
 // Unprotected Routes
-// app.use('/auth', authRouter)
+app.use('/auth', authRouter)
 
 // Auth middleware
 app.use(authorization)
 
 // // Protected Routes
-// app.use('/posts', postRouter)
+app.use('/posts', postRouter)
 
 app.use(notFound)
 app.use(serverError)

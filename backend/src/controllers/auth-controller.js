@@ -1,6 +1,6 @@
 require('dotenv').config()
 
-const User = require('../models/auth.js')
+const User = require('../models/user.js')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
@@ -25,19 +25,19 @@ async function registerUser(req, res) {
 }
 
 async function loginUser(req, res) {
-    const { name, password } = req.body
+    const { email, password } = req.body
 
     try {
-        const user = await User.findOne({ name })
+        const user = await User.findOne({ email })
 
         if (!user) {
-            return res.status(404).json({ message: "User or password incorrect." })
+            return res.status(404).json({ message: "Email or password incorrect." })
         }
         
         // authenticate user
         const isMatch = await bcrypt.compare(password, user.password)
         if (!isMatch) {
-            return res.status(401).json({ message: "User or password incorrect." })
+            return res.status(401).json({ message: "Email or password incorrect." })
         }
 
         // authorize and serialize w jwt (Create jwt for session)
