@@ -4,15 +4,8 @@ import Header from "./components/header";
 import Home from "./pages/Home";
 import Register from './pages/auth/register'
 import Login from './pages/auth/login'
-import Posts from './pages/post/show'
+import New from './pages/post/create'
 import Footer from './components/footer'
-
-
-const navLinks = [
-  { id: 1 , label: "Home", href: "/"},
-  { id: 2 , label: "About", href: "/about" },
-  { id: 3,  label: "Contact", href: "/contact" },
-]
 
 
 const footerLinks = [
@@ -39,7 +32,7 @@ function App() {
         <Route path="/" element={<Home />}/>
         <Route path="/login" element={<Login />}/>
         <Route path="/register" element={<Register />}/>
-        {/* <Route path="/posts" element={<Posts />}/> */}
+        <Route path="/new" element={<New />}/>
       </Routes>
 
       <Footer footerLinks={footerLinks}/>

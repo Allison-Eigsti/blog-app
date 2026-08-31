@@ -1,8 +1,57 @@
+import {useState} from 'react'
+const API_URL = import.meta.env.VITE_API_URL;
+
 function Login() {
-    return(
-        <>
-            <p>Login</p>
-        </>
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        fetch(`${API_URL}/auth/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.accessToken) {
+                localStorage.setItem('token', data.accessToken)
+                window.location.href = '/'
+            }
+        })
+        .catch(error => console.error('Error logging in user:', error))
+    }
+
+    return (
+        <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
+      <div className="w-full max-w-md rounded-[2rem] bg-white p-8 shadow-[0_20px_80px_rgba(15,23,42,0.12)]">
+        <h2 className="mb-6 text-3xl font-semibold text-slate-900">Login</h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <input
+            type="text"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-slate-500"
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-slate-500"
+          />
+          <button
+            type="submit"
+            className="w-full rounded-2xl bg-slate-900 px-4 py-3 text-white transition hover:bg-slate-700"
+          >
+            Login
+          </button>
+        </form>
+      </div>
+    </div>
     )
 }
 
