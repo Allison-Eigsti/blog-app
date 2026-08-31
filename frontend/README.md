@@ -1,16 +1,95 @@
-# React + Vite
+# DevBlog Solutions
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A simple full-stack blog application where users can register, log in, create posts, view posts, and edit or delete their own posts.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- User registration and login
+- JWT authentication
+- Create blog posts
+- View recent blog posts
+- View individual posts
+- Edit posts
+- Delete posts
+- Protected API routes
+- Responsive UI with Tailwind CSS
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Frontend
 
-## Expanding the Oxlint configuration
+- React
+- React Router
+- Tailwind CSS
+- Vite
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+### Backend
+
+- Node.js
+- Express
+- MongoDB
+- Mongoose
+- JWT
+
+## Getting Started
+
+### Clone the repository
+
+```bash
+git clone <your-repository-url>
+cd <project-folder>`
+
+### Install Dependencies
+
+    npm install
+
+
+### Environment Variables
+
+Create a `.env` file for the frontend:
+
+    VITE_API_URL=http://localhost:3000
+
+Add the appropriate environment variables for the backend:
+
+    MONGODB_URI=your-mongodb-connection-string
+    JWT_SECRET=your-secret
+
+Do not commit `.env` files to Git.
+
+### Run the Application
+
+Start the backend:
+
+    npm run dev
+
+Start the frontend:
+
+    npm run dev
+
+The frontend will be available at the local URL provided by Vite.
+
+
+## API Endpoints
+
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/auth/register` | Register a new user |
+| POST | `/auth/login` | Log in a user |
+| GET | `/posts` | Get all posts |
+| GET | `/posts/:id` | Get a single post |
+| POST | `/posts` | Create a post |
+| PUT | `/posts/:id` | Update a post |
+| DELETE | `/posts/:id` | Delete a post |
+
+## Authentication
+
+The application uses JWT authentication.
+
+After a successful login or registration, the JWT access token is stored in `localStorage` and included with protected API requests.
+
+    Authorization: Bearer <token>
+
+## License
+
+This project is for educational and personal use.
