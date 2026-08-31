@@ -6,6 +6,8 @@ import Register from './pages/auth/register'
 import Login from './pages/auth/login'
 import New from './pages/post/create'
 import Footer from './components/footer'
+import Show from './pages/post/show'
+import Edit from './pages/post/edit'
 
 
 const footerLinks = [
@@ -33,6 +35,8 @@ function App() {
         <Route path="/login" element={<Login />}/>
         <Route path="/register" element={<Register />}/>
         <Route path="/new" element={<New />}/>
+        <Route path="/show/:postId" element={<Show />}/>
+        <Route path="/edit/:postId" element={<Edit />}/>
       </Routes>
 
       <Footer footerLinks={footerLinks}/>
